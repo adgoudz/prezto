@@ -1,0 +1,49 @@
+
+#    ANSI          16      256
+# 00 Black         base00 base00
+# 01 Red           base08 base08
+# 02 Green         base0B base0B
+# 03 Yellow        base0A base0A
+# 04 Blue          base0D base0D
+# 05 Magenta       base0E base0E
+# 06 Cyan          base0C base0C
+# 07 White         base05 base05
+# 08 BrightBlack   base03 base03
+# 09 BrightRed     base09
+# 10 BrightGreen   base01
+# 11 BrightYellow  base02
+# 12 BrightBlue    base04
+# 13 BrightMagenta base0f
+# 14 BrightCyan    base06
+# 15 BrightWhite   base07
+# 16                      base09
+# 17                      base06
+# 18                      base01
+# 19                      base02
+# 20                      base04
+# 21                      base0F
+
+function prompt_andrew_precmd {
+    if (( $+functions[git-info] )); then
+        git-info
+    fi
+}
+
+function prompt_andrew_setup {
+    setopt localoptions ksharrays
+
+    prompt_opts=(cr percent sp subst)
+
+    add-zsh-hook precmd prompt_andrew_precmd
+
+    local divider='%F{8}|%f'
+    zstyle ':prezto:module:git:info:branch' format "${divider}%F{5}%b%f${divider}"
+    zstyle ':prezto:module:git:info:position' format "${divider}%F{5}%p%f${divider}"
+    zstyle ':prezto:module:git:info:keys' format 'prompt' '%b '
+
+    PROMPT='%F{4}%3~%f ${git_info[prompt]}'
+}
+
+prompt_andrew_setup "$@"
+
+# vim: ft=zsh
