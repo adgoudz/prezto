@@ -36,10 +36,13 @@ function prompt_andrew_setup {
 
     add-zsh-hook precmd prompt_andrew_precmd
 
+    zstyle ':prezto:module:git:info' verbose 'yes'
+
     local divider='%F{8}|%f'
     zstyle ':prezto:module:git:info:branch' format "${divider}%F{5}%b%f${divider}"
     zstyle ':prezto:module:git:info:position' format "${divider}%F{5}%p%f${divider}"
-    zstyle ':prezto:module:git:info:keys' format 'prompt' '%b '
+    zstyle ':prezto:module:git:info:dirty' format " %F{11}%f "
+    zstyle ':prezto:module:git:info:keys' format 'prompt' '%b%p%D '
 
     PROMPT='%F{4}%3~%f ${git_info[prompt]}'
 }
