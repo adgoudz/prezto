@@ -50,3 +50,4 @@ function prompt_andrew_setup {
 prompt_andrew_setup "$@"
 
 # vim: ft=zsh
+
