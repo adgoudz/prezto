@@ -1,0 +1,10 @@
+
+function prompt_starship_setup {
+  # zstyle ':prezto:module:prompt' managed 'yes'
+
+  eval "$(starship init zsh)"
+}
+
+prompt_starship_setup "$@"
+
+# vim: ft=zsh
